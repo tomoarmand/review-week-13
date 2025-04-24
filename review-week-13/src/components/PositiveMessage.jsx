@@ -7,16 +7,28 @@ function PositiveMessage({ goal, totalFruits }) {
     
 
 
+    // useEffect(() => {
+    //     const numberRemaining = goal - totalFruits
+    //     if(totalFruits >= goal) {
+    //         setMessage("🎉 Congratulations! You reached your goal!")
+    //     } else if (totalFruits < goal && totalFruits > 0){
+    //         setMessage(`Keep going! ${numberRemaining} to go!`)
+    //     } else {
+    //         setMessage("Let's start eating healthy!")
+    //     }
+    // }, [totalFruits, goal])
+
     useEffect(() => {
         const numberRemaining = goal - totalFruits
-        if(totalFruits >= goal) {
-            setMessage("🎉 Congratulations! You reached your goal!")
-        } else if (totalFruits < 5){
-            setMessage(`Keep going! ${numberRemaining} to go!`)
-        } else if (totalFruits === 0) {
-            setMessage("Let's start eating healthy!")
-        }
-    }, [totalFruits, goal])
+        setMessage(
+            totalFruits >= goal
+            ? "🎉 Congratulations! You reached your goal!"
+            : totalFruits > 0
+            ? `Keep going! ${numberRemaining} to go`
+            : "Let's start eating healthy!"
+        )
+    })
+    
 
     return (
         <div style={{ marginTop: '20px' }}>
